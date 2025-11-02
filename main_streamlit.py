@@ -1,4 +1,5 @@
 import streamlit as st
+from datetime import datetime
 from eng_word_list import eng_word_list
 from jpn_word_list import jpn_word_list
 from class_main import Smart_vocab
@@ -48,7 +49,9 @@ if "completed_words" not in st.session_state:
     st.session_state.completed_words = set()
 
 st.title("📚 오늘도 보카 Oneldo Vocab")
-st.write("오늘의 날짜 : 2025년 10월 27일")
+
+weekday_korean = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']
+st.write(f"오늘의 날짜 : {today.year}년 {today.month}월 {today.day}일 ({weekday_korean[today.weekday()]})")
 
 st.sidebar.subheader("🌍 언어 선택")
 
