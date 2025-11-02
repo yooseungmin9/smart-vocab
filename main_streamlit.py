@@ -4,11 +4,9 @@ from eng_word_list import eng_word_list
 from jpn_word_list import jpn_word_list
 from class_main import Smart_vocab
 
-
 def load_css(file_name):
     with open(file_name) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
 
 load_css('static/style.css')
 
@@ -16,7 +14,6 @@ language_dict = {
     '영어': eng_word_list,
     '일본어': jpn_word_list,
 }
-
 
 # 세션 상태 초기화 함수
 def reset_session():
@@ -29,7 +26,6 @@ def reset_session():
     st.session_state.answered = True
     st.session_state.word_correct_count = {}
     st.session_state.completed_words = set()
-
 
 # 세션 상태 초기화
 if "selected_language" not in st.session_state:
@@ -72,13 +68,11 @@ st.sidebar.info(f"📍 현재 선택: **{selected_language}**")
 current_word_list = language_dict[st.session_state.selected_language]
 MAX_ATTEMPTS = 3
 
-
 def get_available_words():
     return [
         word for word in current_word_list
         if st.session_state.word_correct_count.get(word['word'], 0) < MAX_ATTEMPTS
     ]
-
 
 def get_next_word():
     available_words = get_available_words()
@@ -90,7 +84,6 @@ def get_next_word():
         st.session_state.answered = False
     else:
         st.warning("모든 단어를 3번씩 맞췄습니다 🎉")
-
 
 if st.button("오늘도 학습"):
     get_next_word()
