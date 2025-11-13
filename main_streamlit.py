@@ -4,7 +4,12 @@ from eng_word_list import eng_word_list
 from jpn_word_list import jpn_word_list
 from class_main import Smart_vocab
 
-today = datetime.now()
+from datetime import datetime
+import pytz
+
+# 한국 시간대 설정
+KST = pytz.timezone('Asia/Seoul')
+today = datetime.now(KST)
 
 def load_css(file_name):
     with open(file_name) as f:
